@@ -5,7 +5,6 @@ export default class Comment extends Component {
   constructor() {
     super({
       store,
-      // TODO(elijahtruitt): DO SOMETHING WITH THIS.
       element: document.querySelector('.comments')
     });
   }
@@ -20,13 +19,9 @@ export default class Comment extends Component {
     <div class='comments-list'>
       ${store.state.comments.map(comment => {
         return `
-        <comment- name='hiii' ></comment->
+        <comment- name='${comment.name}' email='${comment.email}' contents='${comment.contents}'></comment->
         `;
       }).join('')}
-    </div>
-    <ul class='comments-list'>
-      
-    </ul>
-    `;
+    </div>`;
   }
 }

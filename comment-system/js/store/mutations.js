@@ -1,6 +1,6 @@
 export default {
   addComment(state, payload) {
-    state.items.push(payload);
+    state.comments.push(payload);
     return state;
   }
 };

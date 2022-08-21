@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script type="module" src="./js/main.js"></script>
     <title>Commenting Application</title>
@@ -10,12 +9,14 @@
   <body>
     <div id="app">
       <form class='comment-form'>
+        <label for="name">Name: </label>
+        <input type="text" id='name'>
+        <label for="email">Email: </label>
+        <input type="text" id='email'>
+        <label for="new-comment-field">Comment: </label>
         <input type="text" id='new-comment-field'/>
         <button type='submit'>Post</button>
       </form>
-      <comment- name='elijah' email='fake.email@gmail.com' contents='
-      Hello my name is Elijah Truitt! Good to meet you.
-      '></comment->
     </div>
     <div class='comments'></div>
   </body>

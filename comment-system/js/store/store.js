@@ -2,34 +2,35 @@ import PubSub from '../lib/pubsub.js';
 
 export default class Store {
   constructor(params) {
-    this.actions = {};
-    this.mutations = {};
-    this.state = {};
-    this.status = 'resting';
-    this.events = new PubSub();
+    let self = this;
+    self.actions = {};
+    self.mutations = {};
+    self.state = {};
+    self.status = 'resting';
+    self.events = new PubSub();
 
     // We allow params to contain some data that we can start off with, so
     // we're checking to see if that data exists here. If it doesn't we're
     // fine since we already made these empty objects above.
     if (params.hasOwnProperty('actions')) {
-      this.actions = params.actions;
+      self.actions = params.actions;
     }
     if (params.hasOwnProperty('mutations')) {
-      this.mutations = params.mutations;
+      self.mutations = params.mutations;
     }
 
     // TODO(elijahtruitt): What is a Proxy??
-    this.state = new Proxy((params.state || {}), {
+    self.state = new Proxy((params.state || {}), {
       set: function(state, key, value) {
         state[key] = value;
         console.log(`stateChange: ${key}: ${value}`);
-        this.events.publish('stateChange', this.state);
+        self.events.publish('stateChange', self.state);
 
-        if (this.status !== 'mutation') {
+        if (self.status !== 'mutation') {
           console.warn(`You should use a mutation to set ${key}!`);
         }
 
-        this.status = 'resting';
+        self.status = 'resting';
         return true;
       }
     });

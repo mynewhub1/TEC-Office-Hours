@@ -14,11 +14,12 @@ class Comment extends HTMLElement {
         width: 40%;
         height: auto;
         padding: 10px;
-        background-color: #808080;
+        border: 2px solid gray;
+        background-color: #b8b6b6a4;
       }
 
       p {
-        color: #87CEEB;
+        color: blue;
       }
     </style>
     </div>
