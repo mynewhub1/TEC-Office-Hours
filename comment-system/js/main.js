@@ -5,8 +5,9 @@ import store from './store/index.js';
 import Comment from './components/comments.js';
 // IDB things
 import { openDB } from 'idb';
+import Note from './components/notes';
 
-window.addEventListener('DOMContentLoaded', async() => {
+window.addEventListener('DOMContentLoaded', async () => {
   // Set up Database.
   openDB('comment-store', 1, {
     upgrade(db) {
@@ -30,7 +31,7 @@ const nameElement = document.querySelector('#name');
 const emailElement = document.querySelector('#email');
 const commentElement = document.querySelector('#new-comment-field');
 
-formElement.addEventListener('submit', async(evt) => {
+formElement.addEventListener('submit', async (evt) => {
   evt.preventDefault();
 
   let name = nameElement.value.trim();
@@ -41,7 +42,7 @@ formElement.addEventListener('submit', async(evt) => {
     // Add comment to state.
     store.dispatch('addComment', comment);
     // Add comment to database.
-    const db = await openDB('comment-store', 1)
+    const db = await openDB('comment-store', 1);
     await db.put('comments', comment);
     db.close();
     // Prepare form to recieve another comment.
@@ -51,4 +52,14 @@ formElement.addEventListener('submit', async(evt) => {
 });
 
 const commentInstance = new Comment();
+const noteInstance = new Note();
 commentInstance.render();
+noteInstance.render();
+
+const noteElement = document.querySelector('.notes');
+const noteValue = document.querySelector('#note');
+noteElement.addEventListener('submit', async (evt) => {
+  evt.preventDefault();
+  let note = noteValue.value.trim();
+  store.dispatch('editNote', note);
+});
