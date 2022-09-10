@@ -6,6 +6,7 @@ import Comment from './components/comments.js';
 // IDB things
 import { openDB } from 'idb';
 import Note from './components/notes';
+import '../sw.js';
 
 window.addEventListener('DOMContentLoaded', async () => {
   // Set up Database.
